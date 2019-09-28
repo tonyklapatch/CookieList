@@ -3,6 +3,7 @@
 ++   CookieList                   ++
 ++   Developer:  Romain Tripault  ++
 ++   Developer:  Mark Hamstra     ++
+++   Developer:  Tony Klapatch    ++
 ++   License:    GPL GNU v2       ++
 ++                                ++
 ++++++++++++++++++++++++++++++++++++
@@ -13,6 +14,6 @@ It comes with a snippet that generates a configurable Add to / Remove from wishl
 
 CookieList was originally developed by Romain Tripault of "Melting Media":http://www.melting-media.com/ to be included with the "bdListings Extra":https://github.com/Mark-H/bdListings. Since then it has been abstracted into a seperate addon, to enable others of using it for different targets as well.
 
-Documentation: 		        http://rtfm.modx.com/display/ADDON/CookieList
+Documentation: 		        https://docs.modx.org/current/en/extras/cookielist
 Source, Bugs & Features: 	https://github.com/Mark-H/CookieList
 Commercial Support:	        romain@melting-media.com / hello@markhamstra.com

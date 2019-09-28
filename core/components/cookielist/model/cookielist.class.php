@@ -22,14 +22,29 @@
  *
 */
 
-class CookieList {
+class CookieList
+{
+    /** @var modX $modx */
     public $modx;
-    public $config = array();
-    private $chunks = array();
 
+    /**
+     * @var array $config
+     */
+    public $config = [];
+
+    /**
+     * @var array $chunks
+     */
+    private $chunks = [];
+
+    /**
+     * @var string $cookiename
+     */
     public $cookiename;
+
     const addParam = 'cl_add';
     const removeParam = 'cl_remove';
+
     /**
      * Main CookieList constructor for setting up configuration etc.
      *
@@ -37,12 +52,13 @@ class CookieList {
      * @param array $config
      * @return \CookieList
      */
-    function __construct(modX &$modx,array $config = array()) {
+    public function __construct(modX &$modx, array $config = []) {
         $this->modx =& $modx;
  
         $basePath = $this->modx->getOption('cookielist.core_path',$config,$this->modx->getOption('core_path').'components/cookielist/');
         $assetsUrl = $this->modx->getOption('cookielist.assets_url',$config,$this->modx->getOption('assets_url').'components/cookielist/');
         $assetsPath = $this->modx->getOption('cookielist.assets_path',$config,$this->modx->getOption('assets_path').'components/cookielist/');
+
         $this->config = array_merge(array(
             'base_bath' => $basePath,
             'core_path' => $basePath,
@@ -85,7 +101,8 @@ class CookieList {
     * @param array $properties The properties for the Chunk
     * @return string The processed content of the Chunk
     */
-    public function getChunk($name,$properties = array()) {
+    public function getChunk($name, $properties = [])
+    {
         $chunk = null;
         if (!isset($this->chunks[$name])) {
             $chunk = $this->modx->getObject('modChunk',array('name' => $name),true);
@@ -113,7 +130,8 @@ class CookieList {
     * @return modChunk/boolean Returns the modChunk object if found, otherwise
     * false.
     */
-    private function _getTplChunk($name,$postFix = '.tpl') {
+    private function _getTplChunk($name, $postFix = '.tpl')
+    {
         $chunk = false;
         $f = $this->config['elements_path'].'chunks/'.$name.$postFix;
         if (file_exists($f)) {
@@ -126,7 +144,8 @@ class CookieList {
         return $chunk;
     }
 
-    function strleft($s1, $s2) {
+    public function strleft($s1, $s2)
+    {
         return substr($s1, 0, strpos($s1, $s2));
     }
 
@@ -135,7 +154,8 @@ class CookieList {
      * @param bool $error
      * @return string - the $_GET queries without the ones created by addToCookieList
      */
-    function cleanParams($uri, $error = false) {
+    public function cleanParams($uri, $error = false)
+    {
 		$uri = str_replace(
 			array(
 				CookieList::addParam.'='.$_GET[CookieList::addParam],
@@ -158,7 +178,8 @@ class CookieList {
      * @param bool $error
      * @return string - url to sendRedirect to (referer)
      */
-    function url($error = false) {
+    public function url($error = false)
+    {
         $s = empty($_SERVER['HTTPS']) ? '' : 's';
         $protocol = $this->strleft(strtolower($_SERVER['SERVER_PROTOCOL']), '/').$s;
         $port = $_SERVER['SERVER_PORT'] == '80' ? '' : ':'.$_SERVER['SERVER_PORT'];
@@ -167,5 +188,3 @@ class CookieList {
     }
 
 }
-
-?>
